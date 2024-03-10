@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Digital Business Cards</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f2f2f2;
+      }
+
+      .card {
+        width: 300px;
+        background-color: white;
+        border-radius: 10px;
+        padding: 20px;
+        margin: 20px auto;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+
+      .card h1 {
+        font-size: 24px;
+        margin-bottom: 10px;
+      }
+
+      .card p {
+        font-size: 16px;
+        margin-bottom: 5px;
+      }
+
+      .card .contact {
+        margin-top: 20px;
+      }
+
+      .card .contact a {
+        display: block;
+        color: #007bff;
+        text-decoration: none;
+        margin-bottom: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <h1><%= fullname %></h1>
+      <p><%= title %></p>
+      <div class="contact">
+        <a href="tel:<%= phone %>">Phone: <%= phone %></a>
+        <a href="<%= email %>">Email: <%= email %></a>
+        <a href="<%= linkedin %>"> LinkedIn</a>
+        <a href="<%= github %>">GitHub</a>
+      </div>
+    </div>
+  </body>
+</html>
