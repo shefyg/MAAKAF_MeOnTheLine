@@ -1,9 +1,20 @@
 const express = require("express");
 const app = express();
 
+// using the public path
+app.use(express.static("public"));
+// to get data  from request
+app.use(express.urlencoded({ extended: true }));
+// this is from the body
+app.use(express.json());
 app.set("view engine", "ejs");
 
-app.get("/", (req, res) => {
+//app.use(logger); // have to put the middleware before the route
+
+// running the logger only on specific request
+// we can run few middlewares as params before handling the request
+// we can even put the logger multiple times
+app.get("/", logger, (req, res) => {
   console.log("Request received");
 
   //// status and message:
@@ -22,5 +33,14 @@ app.get("/", (req, res) => {
     github: "https://github.com/shefyg",
   });
 });
+
+function logger(req, res, next) {
+  console.log(`Logging... request ${req.originalUrl}`);
+  next();
+}
+
+// users router
+const usersRouter = require("./routes/users");
+app.use("/users", usersRouter);
 
 app.listen(3000);
