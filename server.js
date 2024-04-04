@@ -1,4 +1,20 @@
-const express = require("express");
+// 4/4/2024 - add support for db sqlite
+
+import sqlite3 from "sqlite3";
+import express from "express";
+import usersRouter from "./routes/users.js";
+import cardsRouter from "./routes/cardsRouter.js";
+
+import CardController from "./controllers/cardsController.js";
+import path from "path";
+
+// If your script is in the same directory as the cards.db
+const dbPath = path.resolve(process.cwd(), "cards.db");
+
+const cardsController = new CardController(dbPath);
+
+cardsController.queryAll();
+
 const app = express();
 
 // using the public path
@@ -40,7 +56,6 @@ function logger(req, res, next) {
 }
 
 // users router
-const usersRouter = require("./routes/users");
 app.use("/users", usersRouter);
 
 app.listen(3000);
